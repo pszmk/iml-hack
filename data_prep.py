@@ -21,9 +21,7 @@ def get_label_encoder():
 
 
 def load_train(perform: bool = False, group: bool = False) -> tuple:
-    data = pd.read_csv(RAW_DATA_DIR / TRAIN_DATA_FILENAME, sep=";").replace(
-        ",", ".", regex=True
-    )
+    data = pd.read_csv(RAW_DATA_DIR / TRAIN_DATA_FILENAME, sep=";", decimal=",")
 
     le = get_label_encoder()
     class_labels = le.transform(data["Class"].values.astype(np.int32))
